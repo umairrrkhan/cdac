@@ -28,6 +28,8 @@ public class Problem6 {
 				System.out.println("Premium Eligible");
 				
 			}
+			 
+			 // but there is one more way to actually to do this just put the most correct one at the top 
 		}
 		
 		
