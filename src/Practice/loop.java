@@ -1,5 +1,8 @@
 package Practice;
 
+// Write a program to calculate the sum of first 10 natural number.  
+
+
 public class loop {
 	
 	public static void main(String[] args	) {
