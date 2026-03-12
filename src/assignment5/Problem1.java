@@ -2,7 +2,7 @@ package assignment5;
 
 public class Problem1 {
 	
-	public class Car{ 
+	static class Car{ 
 		String make ; //these all r attributes
 		String model;
 		int year;
