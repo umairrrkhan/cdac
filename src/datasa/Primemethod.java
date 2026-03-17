@@ -1,4 +1,4 @@
-package practice;
+package datasa;
 
 import java.lang.Math;
 
