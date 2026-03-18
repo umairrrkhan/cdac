@@ -23,6 +23,16 @@ public class Arraypart2 {
 		
 		System.out.println(minnum);
 		
+		int sumof = sum(arr);
+		System.out.println("sum of number "+ sumof);
+		
+		int avg = sumof / arr.length;
+		
+		System.out.println(avg);
+		
+		display();
+		
+		
 	}
 	
 	
@@ -66,5 +76,19 @@ public class Arraypart2 {
      	
      	return min;
       }
+     
+     public static int sum(int a[]) {
+    	 int sum = 0;
+    	 
+    	 for (int i  = 0 ; i<a.length ; i++) {
+    		 sum += a[i];
+    	 }
+    	 
+    	 return sum ;
+     }
+     
+     static void display() {
+    	 System.out.println("end karo ");
+     }
 
 }
