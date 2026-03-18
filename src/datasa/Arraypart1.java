@@ -26,5 +26,8 @@ public class Arraypart1 {
 	   System.out.println(b[0]);
 			   
 	}
+	
+	
+	
 
 }
