@@ -11,7 +11,10 @@ public class DuplicateArray {
 		
 		Input(arr);
 		
-		Duplicate(arr , gh);
+		dublicate(arr , gh);
+		print(gh);
+		print(arr);
+		
 	}
 	
 	
@@ -25,13 +28,36 @@ public class DuplicateArray {
 		}
 	}
 	
-	public static void Duplicate(int n [] , int k[]) {
-		for ( int i = 0 ; i< n.length ; i++) {
-			for (int j  = 0 ; j< n.length ; i++) {
-				if ( n[i] != n[j]) {
-					k[i] = n[i];
+	public static void dumplicatecount(int n [] ) {
+		System.out.println("duplicate found");
+		boolean found = false ;
+		for (int i = 0 ; i <n.length ; i++) {
+			for (int j = i+1 ; j<n.length ; j++) {
+				if ( n[i] == n[j]) {
+					
+					System.out.println(n[i]);
+					
+					found = true;
+					
 				}
 			}
+		}
+	}
+	
+	public static void dublicate(int n [] , int g[]) {
+		for (int i = 0 ; i< n.length ; i++) {
+			for ( int j = i+1 ; j<n.length ; j++) {
+				if ( n[i] != n[j]) {
+				 g[i]= n[i];
+				 
+				}
+			}
+		}
+	}
+	
+	public static void print(int g[]) {
+		for (int i = 0 ; i< g.length ; i++) {
+			System.out.println(g[i]);
 		}
 	}
 

@@ -39,7 +39,7 @@ public class Twosum {
 				}
 			}
 		}
-		 System.out.println("No pair found");
+		 System.out.println("No more pair found");
 		
 	}
 	
