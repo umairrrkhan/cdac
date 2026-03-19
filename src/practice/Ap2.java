@@ -20,6 +20,8 @@ public class Ap2 {
 		int findmin = findMin(arr);
 		System.out.println(findmin);
 		
+		reverse(arr);
+		
 		
 		
 	}
@@ -68,6 +70,12 @@ public class Ap2 {
 				}
 				
 				return min;
+			}
+			
+			public static void reverse(int n [] ) {
+				for ( int i = n.length-1 ; i >= 0 ; i--) {
+					System.out.println(n[i]);
+				}
 			}
 
 	}
