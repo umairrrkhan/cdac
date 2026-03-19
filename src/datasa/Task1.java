@@ -23,12 +23,17 @@ public class Task1 {
 		
 		
 		for(int i = 0 ; i< arr.length ; i++) {
-			System.out.println(arr[i]);
+			System.out.print(arr[i] + " ");
 		}
+		
+		System.out.println();
 		
 	}
 	
 	public static int  findmax(int [] arr ) {
+		
+		if (arr.length == 0) return -1;
+		
 		int max = arr[0];
 		
 		for ( int i  = 0 ; i< arr.length ; i++ ) {
