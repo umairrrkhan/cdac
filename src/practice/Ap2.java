@@ -17,6 +17,9 @@ public class Ap2 {
 		
 		System.out.println(find);
 		
+		int findmin = findMin(arr);
+		System.out.println(findmin);
+		
 		
 		
 	}
@@ -52,6 +55,19 @@ public class Ap2 {
 				 }
 				}
 				return max;
+			}
+			
+			
+			public static int findMin(int n[]) {
+				int min = n[0];
+				
+				for ( int i = 0 ; i< n.length ; i ++ ) {
+					if ( n [i] < min ) {
+						min = n[i];
+					}
+				}
+				
+				return min;
 			}
 
 	}
