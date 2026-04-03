@@ -19,6 +19,8 @@ public class Basicone {
 		arr.add(null);
 		arr.add(1,12);
 		
+		arr.set
+		
 		System.out.println("contan her : "+ arr.contains(1));
 		
 		arr.remove(Integer.valueOf(13));
