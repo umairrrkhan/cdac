@@ -26,6 +26,8 @@ class dsa1{
 		
 	}
 }
+
+//will only work if sorted not work on the unsorted this algo
 public class Prb1dsa {
 
 	public static void main(String args[] ) {
