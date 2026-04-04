@@ -18,7 +18,6 @@ public class Mergedarray {
 	            merged[size1 + i] = arr2[i];        
 	        }
 	        
-	        // Print merged array
 	        for (int i = 0; i < merged.length; i++) { 
 	            System.out.print(merged[i] + " ");
 	        }
