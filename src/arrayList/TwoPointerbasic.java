@@ -74,12 +74,35 @@ public class TwoPointerbasic {
 		
 	}
 	
+	static int removeDuplicate(int n[]) {
+		int left = 1;
+		
+		for( int i = 1 ; i< n.length ; i++) {
+			if(n[i]!= n[i-1]) {
+				n[left] = n[i];
+				left++;
+			}
+		}
+		return left;
+		
+	}
+	static void print(int n[]) {
+		for( int x : n) {
+			System.out.println(x);
+		}
+	}
+	
 	public static void main(String args[]) {
-		int m[] = {0,2,3,4,5,6};
+		int m[] = {0,2,3,2,2,2,24,5,6};
 		TwoPointerbasic.find(m);
 		TwoPointerbasic.reverse(m);
 		
 		System.out.println(TwoPointerbasic.isPalindrome("madam"));
+		
+		int v = TwoPointerbasic.removeDuplicate(m);
+		
+		TwoPointerbasic.print(m);
+		
 		
 		
 	}
