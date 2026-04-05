@@ -21,11 +21,32 @@ public class TwoPointerbasic {
 			}
 		
 		}
+		
+		
+	}
+	
+	static void reverse(int n []) {
+		int left = 0;
+		int right = n.length -1;
+		
+		while(left < right) {
+			int temp = n[left];
+			n[left] = n[right];
+			n[right] = temp;
+			
+			left++;
+			right--;
+		}
+		
+		for (int x : n) {
+			System.out.println(x);
+		}
 	}
 	
 	public static void main(String args[]) {
 		int m[] = {0,2,3,4,5,6};
 		TwoPointerbasic.find(m);
+		TwoPointerbasic.reverse(m);
 	}
 
 }
