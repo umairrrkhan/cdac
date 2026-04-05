@@ -60,6 +60,20 @@ public class TwoPointerbasic {
 		return true;
 	}
 	
+	static void movedAllzero(int n[]) {
+		int left = 0; // 
+		
+		for ( int i = 0 ; i< n.length ; i++) {
+			if(n[i]!= 0) {
+				int temp = n[i];
+				n[i] = n[left];
+				n[left] = temp;
+				left++;
+			}
+		}
+		
+	}
+	
 	public static void main(String args[]) {
 		int m[] = {0,2,3,4,5,6};
 		TwoPointerbasic.find(m);
