@@ -141,6 +141,26 @@ public class TwoPointerbasic {
         }
         return count;
     }
+	 
+	 static void closestPair(int n[] ,int target) {
+		 int left = 0  ; int right = n.length-1;
+		 
+		 int bestleft = left  ; int bestright= right;
+		 
+		 int closestSum = n[left] + n[right];
+		 
+		 while(left<right) {
+			 int sum = n[left] +n[right];
+			 if(Math.abs(sum-target)<Math.abs(closestSum-target)) {
+				 closestSum = sum;
+				 bestleft = left;
+				 bestright = right;
+			 }
+		     if(sum<target) left++;
+		     right--;
+		 }
+		 
+	 }
 	
 	public static void main(String args[]) {
 		int m[] = {0,2,2,2,2,5,6};
@@ -157,7 +177,7 @@ public class TwoPointerbasic {
 		
 		System.out.println(TwoPointerbasic.isArmstrong(111));
 		System.out.println("pair");
-		TwoPointerbasic.countPair(m, 4);
+		System.out.println(TwoPointerbasic.countPair(m, 4));
 	}
 
 }
