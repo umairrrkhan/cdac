@@ -92,6 +92,33 @@ public class TwoPointerbasic {
 		}
 	}
 	
+	static boolean isPrime(int n) {
+		if(n%2==0 || n%3==0) return false;
+		if(n<=2) return false;
+		
+		for( int i = 4 ; i* i<= n ; i++) {
+			if(n%i==0) return false;
+		}
+		
+		return true;
+	}
+	
+	static boolean  isArmstrong(int n ) {
+		int original  = n ;
+		
+		int digit = String.valueOf(n).length();
+		
+		int sum = 0 ;
+		
+		while( n >0) {
+			 n = n%10;
+			 sum+= Math.pow(digit, n);
+			 n/=10;
+		}
+		
+		return sum== original;
+	}
+	
 	public static void main(String args[]) {
 		int m[] = {0,2,3,2,2,2,24,5,6};
 		TwoPointerbasic.find(m);
@@ -102,9 +129,9 @@ public class TwoPointerbasic {
 		int v = TwoPointerbasic.removeDuplicate(m);
 		
 		TwoPointerbasic.print(m);
+		TwoPointerbasic.isPrime(43);
 		
-		
-		
+		System.out.println(TwoPointerbasic.isArmstrong(111));
 	}
 
 }
