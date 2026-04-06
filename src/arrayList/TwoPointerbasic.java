@@ -119,8 +119,31 @@ public class TwoPointerbasic {
 		return sum== original;
 	}
 	
+	 static int countPair(int[] arr, int target) {
+        int left = 0, right = arr.length - 1;
+        int count = 0;
+
+        while (left < right) {
+            int sum = arr[left] + arr[right];
+
+            if (sum == target) {
+                System.out.println("pair " + arr[left] + " + " + arr[right]);
+                count+=1;
+                left++;
+                right--;
+            }
+            else if (sum < target) {
+                left++;
+            }
+            else {
+                right--;
+            }
+        }
+        return count;
+    }
+	
 	public static void main(String args[]) {
-		int m[] = {0,2,3,2,2,2,24,5,6};
+		int m[] = {0,2,2,2,2,5,6};
 		TwoPointerbasic.find(m);
 		TwoPointerbasic.reverse(m);
 		
@@ -129,9 +152,12 @@ public class TwoPointerbasic {
 		int v = TwoPointerbasic.removeDuplicate(m);
 		
 		TwoPointerbasic.print(m);
+		System.out.println("prime");
 		TwoPointerbasic.isPrime(43);
 		
 		System.out.println(TwoPointerbasic.isArmstrong(111));
+		System.out.println("pair");
+		TwoPointerbasic.countPair(m, 4);
 	}
 
 }
