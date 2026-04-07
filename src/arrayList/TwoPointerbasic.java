@@ -161,6 +161,27 @@ public class TwoPointerbasic {
 		 }
 		 
 	 }
+	 
+	 static void sortArray0(int n [] ) {
+		 int left = 0;
+		 int right = n.length-1;
+		 
+		 
+		 
+		 while(left < right) {
+			 if(n[left] == 0) {
+				 left++;
+			 }
+			 else if (n[right] == 1) {
+				 right --;
+			 }
+			 else {
+				 int temp = n[left];
+				 n[left] = n[right];
+				 n[right] = temp;
+			 }
+		 }
+	 }
 	
 	public static void main(String args[]) {
 		int m[] = {0,2,2,2,2,5,6};
