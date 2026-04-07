@@ -182,6 +182,30 @@ public class TwoPointerbasic {
 			 }
 		 }
 	 }
+	 
+	 static int[] squareArray(int[] n ) {
+		 int[] result = new int[5];
+		 int left = 0;
+		 int right = n.length - 1;
+		 int pos = n.length-1;
+		 
+		 while(left <= right) {
+			 int leftbig = n[left]* n[left];
+			 int rightbig = n[right] * n[right];
+			 if(leftbig<rightbig) {
+				 result[pos] = rightbig;
+				 right--;
+			 }
+			 
+			 else {
+				 result[pos] = leftbig;
+				 left++;
+				 
+			 }
+			 pos--;
+		 }
+		 return result;
+	 }
 	
 	public static void main(String args[]) {
 		int m[] = {0,2,2,2,2,5,6};
