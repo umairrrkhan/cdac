@@ -10,12 +10,12 @@ public class ContainerWithMostWater {
 		int right = n.length - 1;
 		
 		while(left < right) {
-			int width = right - left;
-			int height = Math.min(n[left]  ,  n[right]);
+			int width = right - left; // DISTENCE BW WALLASS
+			int height = Math.min(n[left]  ,  n[right]); // GET THE SHORTER WATER LEVEL 
 			int area = width * height;
 			Maxarea = Math.max(Maxarea, area);
 			
-			if(n[left]<n[right]) {
+			if(n[left]<n[right]) { // MOVE POINTER TO THE SHORTER WALL
 				left++;
 			}
 			else {
