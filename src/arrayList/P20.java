@@ -35,7 +35,16 @@ class MyList<T> {
 public class P20 {
 	
 	public static void main(String args [] ) {
-		
+		 MyList<String> list = new MyList<>();
+		    
+		    list.add("apple");
+		    list.add("Banana");
+		    list.add("Cherry");
+		    
+		    // Get stuff
+		    System.out.println(list.get(0));  
+		    System.out.println(list.get(1));  
+		    System.out.println(list.get(2));
 	}
 
 }
