@@ -1,5 +1,7 @@
 package blind150;
 
+import java.util.*;
+
 public class ContainDuplicateEasy {
 	
 	public static boolean result(int arr[]) {
@@ -16,6 +18,20 @@ public class ContainDuplicateEasy {
 		return false;
 	}
 	
+	public static boolean result2(int arr[]) {
+		Set<Integer> seen = new HashSet<>();
+		
+		for(int nums : arr) {
+			if(seen.contains(nums)) {
+				return true;
+			}
+			
+			seen.add(nums);
+		}
+		
+		return false;
+	}
+	
 	public static void main(String args[]) {
 		int m[] = {1,2,3,45,5};
 		int n[] = {1,2,2,3,4,5};
@@ -23,6 +39,8 @@ public class ContainDuplicateEasy {
 		result(m);
 		
 		System.out.println(result(n));
+		
+		System.out.println(result2(m));
 	}
 
 }
