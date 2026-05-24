@@ -17,9 +17,19 @@ public class Secondlargest {
 		
 		return second;
 	}
+	
+	public static void reverse(int num[]) {
+		for(int i = num.length-1; i>=0; i--) {
+			System.out.println(num[i]);
+		}
+	}
 	public static void main(String args[]) {
 		int m [] = {1,2,3,4,5,6,7,9};
 		
 		System.out.println(result(m));
+		
+		Secondlargest obj = new Secondlargest();
+		
+		obj.reverse(m);
 	}
 }
