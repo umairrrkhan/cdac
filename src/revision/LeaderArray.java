@@ -22,6 +22,20 @@ public class LeaderArray {
 		return Leader;
 	}
 	
+	public static List<Integer> fast(int arr[]){
+		List<Integer> fast = new ArrayList<>();
+		int max = Integer.MIN_VALUE;
+		for(int i = arr.length ; i<=0 ; i--) {
+			if(arr[i]> max) {
+				fast.add(arr[i]);
+				max =arr[i];
+			}
+		}
+		Collections.reverse(fast);
+		return fast;
+		
+	}
+	
 	public static void main(String args[]) {
 		int m[]  = {12,23,4,5,678,9};
 		LeaderArray obj = new LeaderArray();
