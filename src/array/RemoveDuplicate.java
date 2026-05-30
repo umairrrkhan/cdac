@@ -20,8 +20,7 @@ public class RemoveDuplicate {
 		int slow = 0;
 		for(int fast = 1; fast<arr.length ; fast++) {
 			if(arr[fast] != arr[slow]) {
-				slow++;
-				arr[slow] = arr[fast];
+				arr[++slow] = arr[fast];
 			}
 		}
 		
@@ -33,7 +32,7 @@ public class RemoveDuplicate {
 		int[] g = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
 		
 		
-		int k = result(g);
+		int k = practice(g);
 
         System.out.println("Unique count  = " + k);
 	}
