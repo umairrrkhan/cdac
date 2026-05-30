@@ -13,6 +13,20 @@ public class RemoveDuplicate {
 		
 		return left+1;
 	}
+	
+	public static int practice(int [] arr) {
+		if (arr.length ==0) return 0;
+		
+		int slow = 0;
+		for(int fast = 1; fast<arr.length ; fast++) {
+			if(arr[fast] != arr[slow]) {
+				slow++;
+				arr[slow] = arr[fast];
+			}
+		}
+		
+		return slow+1 ;
+	}
 
 	public static void main(String[] args) {
 
