@@ -36,6 +36,22 @@ public class LeaderArray {
 		
 	}
 	
+	
+	public static List<Integer> practice(int arr[]){
+		List<Integer> tr = new ArrayList<>();
+		int max = Integer.MIN_VALUE;
+		
+		for(int i = arr.length ; i> 0 ; i--) {
+			if(arr[i]>max) {
+				tr.add(arr[i]);
+				max = arr[i];
+			}
+		}
+		
+		Collections.reverse(tr);
+		return tr;
+	}
+	
 	public static void main(String args[]) {
 		int m[]  = {12,23,4,5,678,9};
 		LeaderArray obj = new LeaderArray();
