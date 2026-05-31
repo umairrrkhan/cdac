@@ -39,5 +39,11 @@ class Node{
 		System.out.println("null");
 	}
 	
+	public static Node insertBeginning(Node head , int val) {
+		Node newnode = new Node(val);
+		newnode.next = head;
+		return newnode;
+	}
+	
 	
 }
