@@ -85,7 +85,7 @@ class Node{
 		return false;
 	}
 	
-	public static Node removeNthFromEnd(int n , Node head) {
+	public static Node removeNthNodeFromEnd(int n , Node head) {
 		Node dummy = new Node(-1);
 		dummy.next = head;
 		Node slow = dummy;
@@ -106,5 +106,23 @@ class Node{
 		return dummy.next;
 	}
 	
+	Node mergeTwoLists(Node l1 , Node l2) {
+		Node dummy = new Node(-1);
+		Node curr = dummy;
+		while(l1!=null && l2!=null) {
+			if(l1.val<=l2.val) {
+				curr.next = l1;
+				l1 = l1.next;
+			}else {
+				curr.next = l2.next;
+				l2= l2.next;
+			}
+		}
+		
+		if(l1!=null) curr.next= l1.next;
+		if(l2!=null) curr.next= l2.next;
+		
+		return dummy.next;
+	}
 	
 }
