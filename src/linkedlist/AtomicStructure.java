@@ -85,5 +85,26 @@ class Node{
 		return false;
 	}
 	
+	public static Node removeNthFromEnd(int n , Node head) {
+		Node dummy = new Node(-1);
+		dummy.next = head;
+		Node slow = dummy;
+		Node fast = dummy;
+		
+		for(int i = 0 ; i<n ; i++) {
+			fast = fast.next;
+		}
+		
+		while(fast.next!=null) {
+			slow = slow.next;
+			fast = fast.next;
+		}
+		
+		
+		slow.next  = slow.next.next ;
+		
+		return dummy.next;
+	}
+	
 	
 }
