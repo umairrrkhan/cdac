@@ -136,4 +136,15 @@ class Node{
 		return count;
 	}
 	
+	boolean search(Node head , int target) {
+		Node current = head;
+		
+		while(current!= null) {
+			if(current.val == target) return true;
+			current = current.next;
+		}
+		
+		return false;
+	}
+	
 }
