@@ -45,6 +45,22 @@ class Node{
 		return newnode;
 	}
 	
+Node insertAtEnd(Node head , int val ) {
+	Node newnode = new Node(val);
+	if(head == null) {
+		return newnode;
+	}
+	
+	Node current = head ;
+	
+	while(current.next!=null) {
+		current = current.next;
+	}
+	
+	current.next = newnode;
+	return head;
+	}
+	
 	Node reverse(Node head) {
 		Node prev = null;
 		Node curr = head;
@@ -58,6 +74,8 @@ class Node{
 		}
 		return prev;
 	}
+	
+	
 	
 	Node findmiddle(Node head) {
 		Node slow  = head;
