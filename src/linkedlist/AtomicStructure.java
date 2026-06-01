@@ -45,7 +45,7 @@ class Node{
 		return newnode;
 	}
 	
-Node insertAtEnd(Node head , int val ) {
+    public static Node insertAtEnd(Node head , int val ) {
 	Node newnode = new Node(val);
 	if(head == null) {
 		return newnode;
