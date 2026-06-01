@@ -60,6 +60,30 @@ class Node{
 	current.next = newnode;
 	return head;
 	}
+    
+    public static Node insertatPos(Node head , int val ,int pos) {
+    	Node newnode = new Node(val) ;
+    		if(pos == 0) {
+    			newnode.next = head;
+    			return newnode ;
+    		}
+    		
+    		Node prev = head;
+    		
+    		for (int i = 0 ; i< pos - 1 ; i++) {
+    			if(prev == null) {
+    				return head;
+    			}
+    			prev = prev.next ;
+    		}
+    		
+    		
+    		if(prev == null) return head;
+    		newnode.next = prev.next;
+    		prev.next = newnode;
+    		return head;
+    	
+    }
 	
 	Node reverse(Node head) {
 		Node prev = null;
