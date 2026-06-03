@@ -161,8 +161,11 @@ class Node{
 			}
 		}
 		
-		if(l1!=null) curr.next= l1.next;
-		if(l2!=null) curr.next= l2.next;
+		if(l1!=null) {
+			curr.next = l1;
+		}else {
+			curr.next = l2;
+		}
 		
 		return dummy.next;
 	}
