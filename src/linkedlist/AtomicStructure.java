@@ -192,4 +192,10 @@ class Node{
 		return false;
 	}
 	
+	Node deleteinBeginning(Node head) {
+		if(head == null) return null;
+		return head.next;
+		
+	}
+	
 }
