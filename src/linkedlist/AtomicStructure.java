@@ -213,4 +213,21 @@ class Node{
 		return head;
 	}
 	
+	Node deleteatNpos(Node head , int target) {
+		if (head == null ) return null ;
+		if(head.val == target) return head.next ;
+		
+		Node prev = head ;
+		
+		while(prev.next != null && prev.next.val!=target) {
+			prev = prev.next;
+		}
+		
+		if(prev.next!=null ) {
+			prev.next = prev.next.next;
+		}
+		
+		return head;
+	}
+	
 }
