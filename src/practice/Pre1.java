@@ -1,5 +1,5 @@
 package practice;
-
+import java.util.*;
 public class Pre1 {
 	
 	public static int  problem1(int n [] ) {
@@ -16,6 +16,17 @@ public class Pre1 {
 		}
 		
 		return xor ;
+	}
+	
+	
+	public Map<Character , Integer> freqChrachter(String s ){
+		Map<Character , Integer> freq = new LinkedHashMap<>();
+		
+		for(char c : s.toCharArray()) {
+			freq.put(c, freq.getOrDefault(c, 0)+1);
+		}
+		
+		return freq;
 	}
 
 }
