@@ -40,6 +40,26 @@ public class RemoveDuplicate {
 		}
 		return -1;
 	}
+	
+	public static void printDuplicate(int [] arr) {
+		Set<Integer> seen = new HashSet<>();
+		Set<Integer> duplicate = new HashSet<>();
+		
+		for (int num : arr) {
+			if(!seen.add(num)) {
+				duplicate.add(num);
+			}
+		}
+		
+		if (duplicate.isEmpty()) {
+            System.out.println("No Duplicates");
+            return;
+        }
+
+        for (int num : duplicate) {
+            System.out.println(num);
+        }
+	}
 
 	public static void main(String[] args) {
 
