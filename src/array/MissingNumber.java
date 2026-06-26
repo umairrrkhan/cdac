@@ -33,6 +33,18 @@ public class MissingNumber {
 		return xor;
 	}
 	
+	public static int better(int arr[] ) {
+		int n = arr.length;
+	    int xor = n;
+	    
+	    for(int i = 0 ; i < n ; i++) {
+	    	xor^= i;
+	    	xor^=arr[i];
+	    }
+	    
+	    return xor;
+	}
+	
 	public static void main(String args[]) {
 		int arr[] = {1,0,3};
 		
