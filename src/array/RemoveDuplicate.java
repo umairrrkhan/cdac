@@ -1,5 +1,8 @@
 package array;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class RemoveDuplicate {
 	
 	public static int result(int[]nums) {
@@ -25,6 +28,17 @@ public class RemoveDuplicate {
 		}
 		
 		return slow+1 ;
+	}
+	
+	public static int findSingleDuplicate(int arr[]) {
+		Set<Integer> set = new HashSet<>();
+		
+		for(int num : arr) {
+			if(!set.add(num)) {
+				return num;
+			}
+		}
+		return -1;
 	}
 
 	public static void main(String[] args) {
