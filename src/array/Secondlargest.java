@@ -18,6 +18,22 @@ public class Secondlargest {
 		return second;
 	}
 	
+	public static int second(int arr[]) {
+		int max = arr[0];
+		int second = Integer.MIN_VALUE;
+		
+		for(int i = 1; i< arr.length ; i++) {
+			if(arr[i] > max) {
+				second = max ;
+				max = arr[i];
+			}else if(second < arr[i] && max!= arr[i]) {
+				second = arr[i];
+			}
+		}
+		
+		return second == Integer.MIN_VALUE? Integer.MIN_VALUE : second;
+	}
+	
 	public static void reverse(int num[]) {
 		for(int i = num.length-1; i>=0; i--) {
 			System.out.println(num[i]);
