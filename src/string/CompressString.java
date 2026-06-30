@@ -3,6 +3,7 @@ package string;
 public class CompressString {
 	
 	public static String compress(String s ) {
+		if(s == null || s.isEmpty()) return s ;
 		StringBuilder result = new StringBuilder();
 		
 		int i = 0;
