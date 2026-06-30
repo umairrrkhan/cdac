@@ -11,13 +11,21 @@ public class RotateArrayByKposition {
 		reverse(num , k , num.length-1);
 	}
 	
+	// the previous version kinda hard 
+	
+	public static void rightRotate(int num [] , int k ) {
+		int n = num.length -1;
+		k = k %n;
+		leftRotateArraay(num , n-k);
+	}
+	
 	public static void leftRotateArraay(int [] arr , int k ) {
 		int n = arr.length ;
 		k = k % n ;
 		
-	reverse (arr , 0, k-1);
-	reverse(arr , k , n-1);
-	reverse (arr , 0 , n -1);
+	reverse (arr , 0, k-1);  // first
+	reverse(arr , k , n-1);  // rest 
+	reverse (arr , 0 , n -1); //all
 	
 	}
 	
