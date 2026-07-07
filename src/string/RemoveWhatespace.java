@@ -6,7 +6,7 @@ public class RemoveWhatespace {
 		StringBuilder sb = new StringBuilder();
 		
 		for(char c : s.toCharArray()) {
-			if(c != ' ') {
+			if(c != ' ') { // we can ue here !chrachter.iswwhitespace(c)) sb.appendthen 
 				sb.append(c);
 			}
 		}

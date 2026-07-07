@@ -7,6 +7,9 @@ import java.util.HashMap;
 public class LongestSubstringWithoutRepeating {
 	
 	public static int hashVersion(String s) {
+		
+		if (s == null || s.length() == 0) return 0;
+		
 		Map<Character , Integer> map = new HashMap<>();
 		
 		int left = 0;
