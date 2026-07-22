@@ -5,9 +5,9 @@ public class SortingAlgo {
 	void bubblesort(int arr[]) {
 		int n = arr.length;
 		
-		for(int i = 0 ; i<n-1-i ; i++) {
+		for(int i = 0 ; i<n-1; i++) {
 			boolean swapped = false;
-			for(int  j = 0 ; j<n-1; j++) {
+			for(int  j = 0 ; j<n-1-i; j++) {
 				if(arr[j]>arr[j+1]) {
 					int temp = arr[j];
 					arr[j] = arr[j+1];
@@ -50,7 +50,7 @@ public class SortingAlgo {
 	}
 	
 	int  partition(int arr[] , int low , int high ) {
-		int pivot = high;
+		int pivot = arr[high];
 		int i = low-1;
 		for (int j = low ; j< high ; j++) {
 			if(arr[j]<pivot) {
