@@ -38,6 +38,12 @@ public class Fibonacci {
 		return x* powerRecusion(x , n -1);
 	}
 	
+	public static int countDigitRecursion(int n) {
+		if(n == 0 )return 0 ;
+		
+		return 1 + countDigitRecursion(n /10);
+	}
+	
 	public static void main(String args[]) {
 		
 	}
