@@ -44,6 +44,8 @@ public class Fibonacci {
 		return 1 + countDigitRecursion(n /10);
 	}
 	
+	// for the sum of digits the end the formail return n % 10 + sum(n/10);
+	
 	public static void main(String args[]) {
 		
 	}
