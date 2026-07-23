@@ -33,6 +33,11 @@ public class Fibonacci {
 		return n + sumToN(n-1);
 	}
 	
+	public static int powerRecusion(int x , int n ) {
+		if(n== 0) return 1;
+		return x* powerRecusion(x , n -1);
+	}
+	
 	public static void main(String args[]) {
 		
 	}
