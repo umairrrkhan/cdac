@@ -34,7 +34,7 @@ public class MajorityElement {
 			}
 		}
 		
-		return count;
+		return candidate;
 	}
 	
 	public static void main(String args[]) {
