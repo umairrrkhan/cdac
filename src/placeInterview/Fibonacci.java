@@ -46,6 +46,11 @@ public class Fibonacci {
 	
 	// for the sum of digits the end the formail return n % 10 + sum(n/10);
 	
+	public static int factorial(int n ) {
+		if(n == 0 ) return 1;
+		return n * factorial(n - 1);
+	}
+	
 	public static void main(String args[]) {
 		
 	}
