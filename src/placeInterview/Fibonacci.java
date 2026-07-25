@@ -2,7 +2,7 @@ package placeInterview;
 
 public class Fibonacci {
 	
-	public static void fibonacciP(int n ) {
+	public static int fibonacciP(int n ) {
 		if (n <= 1) return n;
 		
 		int a = 0 ; 
