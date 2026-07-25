@@ -2,7 +2,7 @@ package placeInterview;
 
 import java.util.Arrays;
 
-public class P12 {
+public class InsertionSort {
 	
 	public static void insertionsort(int [] arr) {
 		for(int i = 1 ; i<arr.length ; i++) {

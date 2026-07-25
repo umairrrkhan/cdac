@@ -1,4 +1,4 @@
-package blind150;
+package array;
 
 public class MoveZero2pointer {
 	

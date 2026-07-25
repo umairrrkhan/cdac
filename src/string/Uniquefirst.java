@@ -1,4 +1,4 @@
-package datasa;
+package string;
 
 public class Uniquefirst {
 	

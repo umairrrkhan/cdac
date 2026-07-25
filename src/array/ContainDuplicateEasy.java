@@ -1,6 +1,10 @@
-package blind150;
+package array;
 
 import java.util.*;
+
+
+// Contains Duplicate (LeetCode 217)
+
 
 public class ContainDuplicateEasy {
 	

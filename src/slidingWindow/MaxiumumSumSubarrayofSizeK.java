@@ -1,6 +1,6 @@
-package placeInterview;
+package slidingWindow;
 
-public class P4 {
+public class MaxiumumSumSubarrayofSizeK {
 	
 	public static int result(int m[] , int k ) {
 		int sum = 0;
