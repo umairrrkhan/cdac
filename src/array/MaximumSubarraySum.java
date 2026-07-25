@@ -1,5 +1,9 @@
 package array;
 
+
+//  Maximum Subarray (LeetCode 53)
+
+
 public class MaximumSubarraySum {
 	
 	
@@ -8,7 +12,7 @@ public class MaximumSubarraySum {
 		int maxending = n[0];
 		
 		for(int i = 1; i<n.length ; i++) {
-			maxending = Math.max(maxending + n[i], max);
+			maxending = Math.max(maxending + n[i], n[i]);
 			
 			max = Math.max(maxending, max);
 		}
@@ -21,7 +25,7 @@ public class MaximumSubarraySum {
 		int maxendinghere = n[0];
 		
 		for(int i = 1 ; i<n.length ; i ++ ) {
-			maxendinghere = Math.max(maxendinghere + n[i], maxSofar);
+			maxendinghere = Math.max(maxendinghere + n[i], n[i]);
 			maxSofar = Math.max(maxendinghere, maxSofar);
 		}
 		
