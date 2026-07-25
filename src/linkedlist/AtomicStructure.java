@@ -156,9 +156,10 @@ class Node{
 				curr.next = l1;
 				l1 = l1.next;
 			}else {
-				curr.next = l2.next;
+				curr.next = l2;
 				l2= l2.next;
 			}
+			curr = curr.next;
 		}
 		
 		if(l1!=null) {

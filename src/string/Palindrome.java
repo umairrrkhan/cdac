@@ -2,6 +2,9 @@ package string;
 
 // this is kinda easy u just need to know the formula but honestly i think critical thinking is very important and im loosing it . 
 
+//  Valid Palindrome (LeetCode 125)
+
+
 public class Palindrome {
 	
 	public boolean isPalindrome(String s) {
@@ -9,9 +12,17 @@ public class Palindrome {
 		int right = s.length()-1;
 		
 		while(left < right) {
-			if(s.charAt(left)!=s.charAt(right)) {
-				return false;
-			}
+			while (left < right && !Character.isLetterOrDigit(s.charAt(left))) {
+            left++;
+        }
+
+			while (left < right && !Character.isLetterOrDigit(s.charAt(right))) {
+            right--;
+        }
+
+			if (Character.toLowerCase(s.charAt(left)) != Character.toLowerCase(s.charAt(right))) {
+            return false;
+        }
 			left++;
 			right--;
 		}

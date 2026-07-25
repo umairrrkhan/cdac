@@ -1,5 +1,7 @@
 package array;
 
+
+// boht mergeinplae are the same thing here its a 88 merge sorted array this is asked in the interview inplace sorted array 
 public class RealMergeSortedarray {
 	
 	public void merge(int num1[] , int m , int num2 [] , int n ) {

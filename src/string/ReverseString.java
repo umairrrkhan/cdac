@@ -14,7 +14,7 @@ public class ReverseString {
 			right--;
 		}
 		
-		return new String(s);
+		return new String(c);
 	}
 
 }
