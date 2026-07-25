@@ -1,5 +1,10 @@
 package array;
 
+
+
+//  Not LeetCode 88 (just merging two sorted arrays)	No in place  (returns new array) 
+
+
 public class MergeSortedArray {
 	
 	public static int [] result(int a1[] , int a2[]) {
