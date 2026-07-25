@@ -2,18 +2,18 @@ package placeInterview;
 
 public class Fibonacci {
 	
-	public static void print(int n ) {
-		if( n <= 0 ) return ;
-		if(n == 1 ) return;
+	public static void fibonacciP(int n ) {
+		if (n <= 1) return n;
 		
 		int a = 0 ; 
 		int b = 1;
 		
-		for (int i = 2; i < n ; i++ ) {
+		for (int i = 2; i <= n ; i++ ) {
 			int next = a+b ;
 			a = b ;
 			b = next;
 		}
+		return b;
 	}
 	
 	
@@ -40,6 +40,8 @@ public class Fibonacci {
 	
 	public static int countDigitRecursion(int n) {
 		if(n == 0 )return 0 ;
+		
+		if (n / 10 == 0) return 1;
 		
 		return 1 + countDigitRecursion(n /10);
 	}
