@@ -1,6 +1,6 @@
 package placeInterview;
 
-public class ReverseString {
+public class ReverseString { // correct code for interview
 	
 	public static void result(String s) {
 		

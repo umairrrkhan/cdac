@@ -4,11 +4,13 @@ import java.util.*;
 
 public class RotateArrayByKposition {
 	
+	
+	// actually this one has high probabilty getting asked lc 189 rotate array 
 	public static void rightRotateArray(int num[] ,int k ) {
 		k = k%num.length;
-		reverse(num , 0 , num.length-1);
-		reverse (num , 0 , k-1);
-		reverse(num , k , num.length-1);
+		reverse(num , 0 , num.length-1); // reverse whole array
+		reverse (num , 0 , k-1);          //  reverse first k element 
+		reverse(num , k , num.length-1);  // reverse remaining elements 
 	}
 	
 	// the previous version kinda hard 
