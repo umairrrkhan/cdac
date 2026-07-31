@@ -1,6 +1,7 @@
 package array;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -28,7 +29,7 @@ public class IntersectionofArray { //sorted
 		
 	}
 	
-	// this is the interview version 
+	// this is the interview version  leetcode 349. Intersection of Two Arrays
 	
 	public static int[] intersection (int [] nums1 , int [] nums2) {
 		Set<Integer> set = new HashSet<>();
@@ -38,7 +39,7 @@ public class IntersectionofArray { //sorted
 		}
 		
 		
-		Set<Integer> resultSet = new Hashset<>();
+		Set<Integer> resultSet = new HashSet<>();
 		
 		for(int num : nums1) {
 			if(set.contains(num)) {

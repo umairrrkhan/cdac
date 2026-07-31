@@ -22,7 +22,7 @@ public class MissingNumber {
 		int n = arr.length ;
 		int xor = 0;
 		
-		for(int i = 0 ; i <= n ; i++) {
+		for(int i = 0 ; i <= n ; i++) { // its see the 0 to n 
 			xor^=i;
 		}
 		
