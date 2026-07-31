@@ -1,0 +1,15 @@
+package array;
+
+public class Leftrotatebyone {
+	
+	public static void leftrotate(int arr[]) {
+		int first = arr[0];
+		
+		for(int i =  1 ; i < arr.length ; i ++ ) {
+			arr[i-1] =arr[i];
+		}
+		
+		arr[arr.length - 1] = first;
+	}
+
+}
