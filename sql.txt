@@ -29,6 +29,226 @@ Scope: You must use aliases (like e1, e2) in correlated subqueries to clarify wh
 If an interviewer asks for a practical use case, I tell them: "I use correlated subqueries with EXISTS to find orphans. For example, SELECT * FROM customers c WHERE NOT EXISTS (SELECT 1 FROM orders o WHERE o.cust_id = c.id); – that finds customers who never placed an order, efficiently."
 
 
+1. What is DBMS, and what is RDBMS?
+Answer: "DBMS is any software that stores and retrieves data (like file systems or hierarchical). RDBMS is a specific type of DBMS based on relational algebra—it stores data in tables with rows and columns, enforces integrity constraints (keys), and supports SQL. Oracle, MySQL, and PostgreSQL are RDBMS. The key difference? RDBMS handles relationships between tables via foreign keys; a basic DBMS does not."
+
+2. What is a primary key?
+Answer: "A Primary Key is a column or set of columns that uniquely identifies each row in a table. It must be UNIQUE and NOT NULL. There can be only one per table. It’s the golden rule of data integrity."
+
+3. What is a foreign key?
+Answer: "A Foreign Key is a column that creates a link between two tables. It references the Primary Key of another table to enforce referential integrity—meaning you cannot insert a child record unless its parent exists. It can have duplicate values and NULLs."
+
+4. What is the difference between PRIMARY KEY and UNIQUE?
+Answer: "Both enforce uniqueness, but:
+
+PK is NOT NULL by default. UNIQUE allows one NULL value (in SQL standard).
+
+A table has only one PK, but can have multiple UNIQUE keys.
+
+Interview tip: PK creates a clustered index by default in SQL Server; UNIQUE creates a non-clustered index."
+
+5. What is the difference between WHERE and HAVING?
+Answer: "WHERE filters rows before grouping (GROUP BY) and cannot use aggregate functions like SUM() or AVG(). HAVING filters after grouping and can use aggregates. Example: WHERE salary > 5000 vs HAVING AVG(salary) > 5000. Always use WHERE first to reduce the dataset before HAVING for performance."
+
+6. What is the difference between DELETE, TRUNCATE and DROP?
+Answer:
+
+DELETE is DML (Data Manipulation). Removes rows one-by-one, can use WHERE, fires triggers, is slow, and can be rolled back.
+
+TRUNCATE is DDL (Data Definition). Removes all rows at once, resets identity counters, does not fire triggers, is faster (minimal logging), but rollback is harder (depends on transaction).
+
+DROP removes the entire table structure from the database—schema, data, and indexes—gone forever.
+Interview tip: Use TRUNCATE for clearing staging tables, DELETE for transactional logic, DROP for removing obsolete tables."
+
+7. What is the difference between UNION and UNION ALL?
+Answer: "Both combine results from two queries. UNION removes duplicate rows and performs a distinct sort (slow). UNION ALL keeps all rows, including duplicates, and is faster because it doesn't sort. Rule: Use UNION ALL unless you explicitly need unique records."
+
+8. What is normalization?
+Answer: "It's the process of organizing data to reduce redundancy and avoid anomalies (insert/update/delete). The three main forms:
+
+1NF: Atomic values (one value per cell).
+
+2NF: No partial dependency (all columns depend on the whole PK).
+
+3NF: No transitive dependency (non-key columns don't depend on other non-key columns).
+Interview tip: I design up to 3NF, but I denormalize for reporting/read-heavy systems to improve performance."
+
+9. What is an index?
+Answer: "An index is a database object (like a B-tree or Hash) that speeds up SELECT queries by allowing quick lookups without scanning the whole table. Trade-off: they slow down INSERT, UPDATE, and DELETE because the index must be updated too, and they consume extra storage. Use them on columns used frequently in WHERE, JOIN, and ORDER BY."
+
+10. What are transactions and ACID properties?
+Answer: "A transaction is a logical unit of work—like a money transfer—that bundles multiple SQL statements. ACID guarantees reliability:
+
+Atomicity: All or nothing (rollback on failure).
+
+Consistency: Data remains valid (constraints enforced).
+
+Isolation: Concurrent transactions don't mess each other up.
+
+Durability: Committed data survives a crash.
+Interview tip: I use BEGIN TRANS, COMMIT, and ROLLBACK to control this, and I set isolation levels (like Read Committed) based on the use case."
+
+11. What is the difference between clustered and non-clustered indexes?
+Answer:
+
+Clustered: Determines the physical order of data on disk. Only one per table (usually the PK). Fastest for range queries.
+
+Non-Clustered: A separate structure that stores the indexed column(s) and a pointer to the actual data row. Can have many (up to 999).
+Interview tip: If your table is heavily read, cluster on the most queried column. If it's heavily written, use fewer indexes."
+
+12. What is a trigger?
+Answer: "A Trigger is a stored procedure that automatically fires (executes) in response to events like INSERT, UPDATE, or DELETE on a table. Used for auditing, enforcing complex business rules, or cascading changes. Caution: Overusing triggers hurts performance and makes debugging a nightmare, so I use them sparingly—usually for logging."
+
+13. RENAME and ALTER queries (Syntax & Use):
+Answer: "ALTER modifies the structure of an existing table—adding, dropping, or modifying columns/constraints.
+
+ALTER TABLE employees ADD COLUMN bonus INT;
+
+ALTER TABLE employees MODIFY COLUMN salary DECIMAL(10,2); (or ALTER COLUMN in SQL Server)
+
+ALTER TABLE employees DROP COLUMN old_field;
+
+RENAME changes the name of a table or column. Syntax varies by DB:
+
+MySQL: RENAME TABLE old_name TO new_name; and ALTER TABLE table_name RENAME COLUMN old TO new;
+
+PostgreSQL: ALTER TABLE table_name RENAME TO new_name;
+Interview tip: Always be cautious with ALTER on large tables—it acquires locks and can cause downtime. I usually schedule these during maintenance windows."
+
+1. The Hierarchy (Start with this to impress them)
+Think of it like a funnel: Super Key → Candidate Key → Primary/Unique/Composite Keys.
+
+Super Key is the broadest. Any set of columns that can uniquely identify a row.
+
+Candidate Key is a minimal Super Key. Take the extra columns out.
+
+Primary / Unique / Composite are specific types of Candidate Keys.
+
+2. The Detailed Breakdown (Your Cheat Sheet)
+🔑 Super Key (The Parent)
+
+Definition: A single column or a set of columns that can uniquely identify a row.
+
+Crucial point: It can contain redundant columns.
+
+Example: In a Students table, {Student_ID} is a super key. But so is {Student_ID, First_Name}. Why? Because even though First_Name is useless for uniqueness, the combination still uniquely identifies the row.
+
+Interview Tease: "It's the superset, but we never use it directly because it has redundancy."
+
+✅ Candidate Key (The Minimalist)
+
+Definition: A Super Key with no redundant columns. If you remove any column from it, it will no longer uniquely identify the row.
+
+Crucial point: Every table must have at least one Candidate Key. These are the eligible primary keys.
+
+Example: {Student_ID} and {Email} are both Candidate Keys. They are unique, non-redundant, and stand alone.
+
+Interview Tease: "These are the finalists for the Primary Key position."
+
+⭐ Primary Key (The Chosen One)
+
+Definition: A Candidate Key that the DBA (you) chooses to be the main identifier for the table.
+
+Crucial Points (Absolute MUST know):
+
+Unique (no duplicates).
+NOT NULL (must have a value for every row).
+Only ONE Primary Key per table.
+Example: We choose Student_ID as the PK.
+
+Interview Tease: "It is the clustered index in most RDBMS, meaning the physical data is sorted by it."
+
+♻️ Unique Key (The Backup)
+
+Definition: A Candidate Key that wasn't chosen as the primary key.
+
+Crucial Points (The golden comparison they ALWAYS ask):
+
+Also Unique (no duplicates).
+Allows NULL values (and in standard SQL, you can have multiple NULLs because NULL != NULL).
+You can have multiple Unique Keys per table.
+Example: We choose Student_ID as Primary, but Email becomes the Unique Key.
+
+🧩 Composite Key (The Combination)
+
+Definition: A key that uses two or more columns together to achieve uniqueness.
+
+Crucial point: This is not a separate category of constraint; it is a characteristic. A Primary Key, Candidate Key, or Unique Key can all be Composite.
+
+Example: In an Enrollment table, {Student_ID} alone isn't unique (a student takes many courses). {Course_ID} alone isn't unique (many students take a course). But the combination {Student_ID + Course_ID} is unique. That is your Composite Primary Key.
+
+Interview Tease: "Never use more columns than necessary. If 2 columns work, don't use 3."
+
+🔗 Foreign Key (The Connector)
+
+Definition: A column (or set of columns) in one table that points to the Primary Key of another table.
+
+Crucial points:
+
+It establishes the relationship (Parent-Child).
+Enforces Referential Integrity – meaning you cannot insert a value into the child table unless it already exists in the parent table.
+You can have NULLs and duplicates in a Foreign Key.
+Example: In an Orders table, Customer_ID is a Foreign Key that references Customer_ID in the Customers table.
+
+
+
+
+second-highest salary
+duplicates
+top N per department
+employee-manager self join
+customers without orders
+indexes, normalization and ACID
+
+
+ DDL (Structure)
+Command	Syntax Skeleton	Key Constraint Impact
+
+CREATE	CREATE TABLE table_name (col1 INT PRIMARY KEY, col2 VARCHAR UNIQUE, FOREIGN KEY (col1) REFERENCES parent(id));	Defines PK, FK, Composite (PRIMARY KEY (a,b)), 
+
+Unique.
+ALTER	ALTER TABLE table_name ADD CONSTRAINT fk_name FOREIGN KEY (col) REFERENCES parent(col);
+
+ALTER TABLE table_name DROP PRIMARY KEY;	Add/drop constraints. To drop PK, you must drop FKs that reference it first.
+
+DROP	DROP TABLE table_name;
+
+DROP TABLE parent CASCADE;	Fails if child FK exists (unless CASCADE). Removes structure permanently.
+
+📊 DML (Data)
+
+Command	Syntax Skeleton	Key Constraint Impact (The Gotchas)
+INSERT	INSERT INTO child (fk_col, val) VALUES (1, 'X');	FK: Value must exist in Parent PK.
+
+Composite: Duplicate combo fails.
+
+PK/Unique: Duplicate value fails.
+
+UPDATE	UPDATE parent SET pk_col = 2 WHERE pk_col = 1;	PK: Fails if child records reference it (unless ON UPDATE CASCADE).
+
+Unique: Must not collide with existing unique values.
+DELETE	DELETE FROM parent WHERE pk_col = 1;	FK: Fails if child records reference it (unless ON DELETE CASCADE).
+TRUNCATE (DDL): Faster, resets auto-increment, cannot rollback.
+
+SELECT	SELECT * FROM parent p JOIN child c ON p.pk = c.fk;	Proves the relationship works. Use LEFT JOIN to check for orphan violations.
+
+🔄 TCL (Transactions)
+
+Command	Syntax	Impact
+COMMIT	COMMIT;	Permanently saves all INSERT/UPDATE/DELETE. Cannot undo.
+
+ROLLBACK	ROLLBACK;	Reverts all changes since last COMMIT. Your undo button.
+
+
+🔐 DCL (Security)
+Command	Syntax	Impact
+GRANT	GRANT SELECT, UPDATE ON db.table TO 'user'@'host';	Gives permissions.
+
+REVOKE	REVOKE DELETE ON db.table FROM 'user'@'host';	Takes permissions away.
+
+
+
+
 
 Find employees whose salary is greater than 50,000
 
@@ -355,3 +575,35 @@ SELECT customer_id,
 FROM Orders
 GROUP BY customer_id
 HAVING COUNT(*) > 3;
+
+
+
+views 
+
+
+CREATE VIEW view_name AS
+SELECT col1, col2 FROM table WHERE condition;
+
+-- Using it
+SELECT * FROM view_name;
+
+
+triggers 
+
+
+CREATE TRIGGER trg_audit
+AFTER INSERT ON employees
+FOR EACH ROW
+BEGIN
+    INSERT INTO audit_log(action, emp_id) VALUES ('INSERT', NEW.id);
+END;
+
+
+
+ROW_NUMBER vs RANK: "ROW_NUMBER is unique per row. RANK gives ties the same value but skips the next number."
+
+CTE vs Subquery: "CTE is more readable and allows recursion. Subquery is in-line."
+
+View vs Stored Procedure: "View is a saved SELECT. SP is a full script that accepts parameters and can modify data."
+
+Trigger Warning: "Triggers fire automatically. Great for audits, but avoid complex business logic in them—they're impossible to debug."
