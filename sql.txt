@@ -1,0 +1,357 @@
+Standard (Non-Correlated) Subquery:
+
+This runs inside-out.
+
+The inner query executes first, independently, returns a result set, and then the outer query uses that result.
+
+Example: SELECT * FROM employees WHERE dept_id IN (SELECT id FROM departments WHERE location = 'NYC');
+
+
+Correlated Subquery:
+
+This runs outside-in.
+
+The inner query depends on the outer query. It cannot run by itself.
+
+The database takes a row from the outer query, runs the inner query using that row's value, checks the condition, then moves to the next row. It runs row-by-row.
+
+Example: SELECT * FROM employees e1 WHERE salary > (SELECT AVG(salary) FROM employees e2 WHERE e2.dept_id = e1.dept_id);
+
+
+
+Execution: Non-correlated = once. Correlated = N-times (once per outer row).
+
+Performance: Correlated are slower and more resource-heavy because they run repeatedly. I always use EXISTS instead of IN for correlated queries, because EXISTS stops processing as soon as it finds a match, which optimizes performance.
+
+Scope: You must use aliases (like e1, e2) in correlated subqueries to clarify which table the column belongs to.
+
+4. The 'EXISTS' Twist (Bonus points):
+If an interviewer asks for a practical use case, I tell them: "I use correlated subqueries with EXISTS to find orphans. For example, SELECT * FROM customers c WHERE NOT EXISTS (SELECT 1 FROM orders o WHERE o.cust_id = c.id); – that finds customers who never placed an order, efficiently."
+
+
+
+Find employees whose salary is greater than 50,000
+
+
+SELECT *
+FROM Employee
+WHERE salary > 50000;
+
+
+2. Find employees from the IT department
+
+
+SELECT *
+FROM Employee
+WHERE department = 'IT';
+
+
+3. Display unique department names
+
+SELECT DISTINCT department
+FROM Employee;
+
+
+4. Sort employees by salary from highest to lowest
+
+SELECT *
+FROM Employee
+ORDER BY salary DESC;
+
+5. Find the top three highest-paid employees
+
+MySQL/PostgreSQL:
+
+SELECT *
+FROM Employee
+ORDER BY salary DESC
+LIMIT 3;
+
+
+6. Find employees whose names begin with A
+
+
+SELECT *
+FROM Employee
+WHERE name LIKE 'A%';
+
+Remember:
+
+'A%'  → starts with A
+'%A'  → ends with A
+'%A%' → contains A
+'_A%' → A is the second character
+
+
+7. Find employees whose salary is between 40,000 and 70,000
+
+
+SELECT *
+FROM Employee
+WHERE salary BETWEEN 40000 AND 70000;
+
+BETWEEN includes both endpoints.
+
+8. Find employees whose manager is not assigned
+
+
+SELECT *
+FROM Employee
+WHERE manager_id IS NULL;
+
+
+
+
+
+aggregate 
+
+
+
+
+9. Count the total number of employees
+
+
+SELECT COUNT(*) AS total_employees
+FROM Employee;
+
+10. Find the average employee salary
+
+SELECT AVG(salary) AS average_salary
+FROM Employee;
+
+11. Count employees in each department
+
+SELECT department, COUNT(*) AS employee_count
+FROM Employee
+GROUP BY department;
+
+
+12. Find the average salary in each department
+
+
+SELECT department, AVG(salary) AS average_salary
+FROM Employee
+GROUP BY department;
+
+
+13. Find departments having more than five employees
+
+SELECT department, COUNT(*) AS employee_count
+FROM Employee
+GROUP BY department
+HAVING COUNT(*) > 5;
+
+Important difference:
+
+WHERE  → filters individual rows before grouping
+HAVING → filters groups after GROUP BY
+
+
+14. Find the highest salary in each department
+
+
+SELECT department, MAX(salary) AS highest_salary
+FROM Employee
+GROUP BY department;
+
+
+15. Find duplicate email addresses
+
+
+SELECT email, COUNT(*) AS occurrences
+FROM Employee
+GROUP BY email
+HAVING COUNT(*) > 1;
+
+This is an extremely important interview pattern:
+
+Duplicate detection
+= GROUP BY column
++ HAVING COUNT(*) > 1
+
+
+
+
+
+joins
+
+
+Level 3: Joins
+
+Assume:
+
+Employee(employee_id, name, salary, department_id, manager_id)
+Department(department_id, department_name)
+Customer(customer_id, customer_name)
+Orders(order_id, customer_id, amount)
+
+
+
+16. Display employees with their department names
+
+
+SELECT e.employee_id,
+       e.name,
+       d.department_name
+FROM Employee e
+INNER JOIN Department d
+    ON e.department_id = d.department_id;
+
+
+17. Display all employees, including employees without departments
+
+
+SELECT e.employee_id,
+       e.name,
+       d.department_name
+FROM Employee e
+LEFT JOIN Department d
+    ON e.department_id = d.department_id;
+
+
+18. Find customers who have placed an order
+
+SELECT DISTINCT c.customer_id,
+                c.customer_name
+FROM Customer c
+INNER JOIN Orders o
+    ON c.customer_id = o.customer_id;
+
+19. Find customers who have never placed an order
+
+Using LEFT JOIN:
+
+SELECT c.customer_id,
+       c.customer_name
+FROM Customer c
+LEFT JOIN Orders o
+    ON c.customer_id = o.customer_id
+WHERE o.order_id IS NULL;
+
+Alternative:
+
+SELECT c.customer_id,
+       c.customer_name
+FROM Customer c
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM Orders o
+    WHERE o.customer_id = c.customer_id
+);
+
+
+20. Display every employee with their manager’s name
+
+This uses a self join because employee and manager are stored in the same table.
+
+SELECT e.name AS employee_name,
+       m.name AS manager_name
+FROM Employee e
+LEFT JOIN Employee m
+    ON e.manager_id = m.employee_id;
+21. Find employees earning more than their managers
+SELECT e.name AS employee_name
+FROM Employee e
+INNER JOIN Employee m
+    ON e.manager_id = m.employee_id
+WHERE e.salary > m.salary;
+
+
+
+22. Find employees earning more than the company average
+
+SELECT *
+FROM Employee
+WHERE salary > (
+    SELECT AVG(salary)
+    FROM Employee
+);
+
+23. Find the second-highest distinct salary
+
+Simple interview version:
+
+SELECT MAX(salary) AS second_highest_salary
+FROM Employee
+WHERE salary < (
+    SELECT MAX(salary)
+    FROM Employee
+);
+
+24. Find the third-highest distinct salary
+
+
+SELECT DISTINCT salary
+FROM Employee
+ORDER BY salary DESC
+LIMIT 1 OFFSET 2;
+
+
+
+25. Find employees receiving the highest salary in their department
+
+
+SELECT e.*
+FROM Employee e
+WHERE e.salary = (
+    SELECT MAX(e2.salary)
+    FROM Employee e2
+    WHERE e2.department_id = e.department_id
+);
+
+
+26. Categorise employees based on salary
+
+SELECT name,
+       salary,
+       CASE
+           WHEN salary >= 80000 THEN 'High'
+           WHEN salary >= 50000 THEN 'Medium'
+           ELSE 'Low'
+       END AS salary_category
+FROM Employee;
+
+
+30. Remove duplicate employee records while keeping one row
+
+First identify duplicate row numbers:
+
+SELECT employee_id,
+       email,
+       ROW_NUMBER() OVER (
+           PARTITION BY email
+           ORDER BY employee_id
+       ) AS row_num
+FROM Employee;
+
+
+31. Find the department with the highest average salary
+
+
+SELECT department_id,
+       AVG(salary) AS average_salary
+FROM Employee
+GROUP BY department_id
+ORDER BY average_salary DESC
+LIMIT 1;
+
+
+32. Find the total order amount for each customer
+
+
+SELECT c.customer_id,
+       c.customer_name,
+       COALESCE(SUM(o.amount), 0) AS total_amount
+FROM Customer c
+LEFT JOIN Orders o
+    ON c.customer_id = o.customer_id
+GROUP BY c.customer_id, c.customer_name;
+
+33. Find customers with more than three orders
+
+
+SELECT customer_id,
+       COUNT(*) AS order_count
+FROM Orders
+GROUP BY customer_id
+HAVING COUNT(*) > 3;
