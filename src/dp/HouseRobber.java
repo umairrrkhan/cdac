@@ -2,22 +2,24 @@ package dp;
 
 public class HouseRobber {
 	
-	public static int result(int nums[]) {
-		int onestepback = 0;
-		int twostepback = 0;
+	public static int result(int nums[] ) {
+		int n = nums.length;
+	    
+	    if(n == 0) return 0;
+	    if(n == 1) return nums[0];
 		
-		for(int money : nums) {
-			int robcurrent = money + twostepback;
-			int skipcurrent = onestepback ;
-			
-			int currentbest = Math.max(robcurrent, skipcurrent);
-			
-			twostepback = onestepback;
-			onestepback = currentbest;
+		int dp[] = new int[n];
+		
+		dp[0] = nums[0];
+		dp[1] = Math.max(nums[0], nums[1]);
+		
+		for(int i= 2 ; i < n ; i++) {
+			int skip = dp[i-1];
+			int rob = dp[i-2]+ nums[i];
+			dp[i] = Math.max(skip, rob);
 			
 		}
 		
-		
-		return onestepback;
+		return dp[n-1];
 	}
 }
