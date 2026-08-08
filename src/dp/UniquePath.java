@@ -14,7 +14,7 @@ public int uniquePaths(int m, int n) {
 	
 	for(int row = 1 ; row< m ; row++) {
 		for(int column = 1 ; column < n ; column++) {
-			dp[column] = dp[column] + dp[column-1];
+			dp[column] = dp[column] + dp[column-1]; // top + left //1d verion 
 		}
 	}
 	
