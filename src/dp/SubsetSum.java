@@ -21,7 +21,7 @@ public class SubsetSum {
 		
 		for(int num : nums) {
 			for(int sum = target ; sum>=num; sum--) {
-				dp[sum]= dp[sum] || dp[sum-target];
+				dp[sum]= dp[sum] || dp[sum-num];
 			}
 		}
 		
