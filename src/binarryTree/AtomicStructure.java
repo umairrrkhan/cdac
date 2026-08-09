@@ -63,7 +63,7 @@ public class AtomicStructure {
 		    int leftHeight = maxDepth(root.left);
 		    int rightHeight = maxDepth(root.right);
 
-		    return 1 + Math.max(leftHeight, rightHeight);
+		    return 1 + Math.max(leftHeight, rightHeight); // return 1 + Math.max(0, 0);
 		}
 		
 		
