@@ -2,7 +2,7 @@ package array;
 
 public class PrefixSum {
 	
-	public int [] result(int arr[] ) {
+	public int [] result(int arr[] ) {  // leetcode 1480
 		int prefix[] = new int [arr.length];
 		
 		prefix[0]  = arr[0];
@@ -14,7 +14,7 @@ public class PrefixSum {
 		return prefix;
 	}
 	
-	public static int rangeSum(int prefix[] , int l , int r) {
+	public static int rangeSum(int prefix[] , int l , int r) { // leetcode 303
 		if(l==0 ) return prefix[r];
 		
 		return prefix[r] - prefix[l-1];
